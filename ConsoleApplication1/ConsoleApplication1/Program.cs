@@ -17,6 +17,10 @@ namespace Ritamedasterisker
                 oddNumber = ReadOddByte();
                 RenderTriangle(oddNumber);
 
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.WriteLine("Tryck på valfri tanget för att prova en gång till - Esc avslutar programmet.");
+                Console.ResetColor();
+
             } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
 
         }
@@ -52,19 +56,20 @@ namespace Ritamedasterisker
         static void RenderTriangle(byte cols)
         {
 
-            int oddNumber,c,n,temp;
-            n = 5;
-           temp= n ;
-           for (oddNumber = 1; oddNumber <= n; oddNumber++)
-           {
-               for (c = 1; c < temp; c++)
-                   Console.Write(" ");
-               
-               temp--;
-               for (c = 1; c <= 2 * oddNumber - 1; c++)
-                   Console.Write("*");
+            int n, c, row, temp;
+            row = ReadOddByte();
+            temp = row;
+            for (n = 1; n <= row; n++)
+            {
+                for (c = 1; c < temp; c++)
+                    Console.Write(" ");
 
-               Console.WriteLine();
+                temp--;
+                for (c = 1; c <= 2 * n - 1; c++)
+                    Console.Write("*");
+
+                Console.WriteLine();
+           }
         }
     }
 }
