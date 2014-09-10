@@ -51,21 +51,23 @@ namespace Ritamedasterisker
 
             }
             return value;
+            
         }
 
         static void RenderTriangle(byte cols)
         {
+            
+            int height, c, width, temp; //use 4 variables to execute a mathematical equation
+            width = cols/2; //Delar cols med två för att värdet 79 var för stort för consolen
+            temp = width;
+            for (height = 1; height <= width; height++)             //triangel http://sharepoint2010mind.blogspot.se/2012/10/c-program-to-print-patterns-of-numbers.html
 
-            int n, c, row, temp;
-            row = ReadOddByte();
-            temp = row;
-            for (n = 1; n <= row; n++)
             {
                 for (c = 1; c < temp; c++)
                     Console.Write(" ");
 
                 temp--;
-                for (c = 1; c <= 2 * n - 1; c++)
+                for (c = 1; c <= 2 * height - 1; c++)
                     Console.Write("*");
 
                 Console.WriteLine();
