@@ -11,32 +11,35 @@ namespace Ritamedasterisker
         static void Main(string[] args)
         {
             byte oddNumber; //triangel http://sharepoint2010mind.blogspot.se/2012/10/c-program-to-print-patterns-of-numbers.html
-            int maxNumber = 79;
+              const int maxNumber = 79;
 
             do
             {
-                oddNumber = ReadOddByte();
+                oddNumber = ReadOddByte(ConsoleApplication1.Properties.Resources.Write,maxNumber);
                 RenderTriangle(oddNumber);
 
                 Console.BackgroundColor = ConsoleColor.Green;
-                Console.WriteLine("Tryck på valfri tanget för att prova en gång till - Esc avslutar programmet.");
+                Console.WriteLine(ConsoleApplication1.Properties.Resources.Continue_prompt);
                 Console.ResetColor();
 
-            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+            } while (IsCounting());
 
         }
-        static byte ReadOddByte()
+        static bool IsCounting() { 
+           return  Console.ReadKey(true).Key != ConsoleKey.Escape;
+        }
+        static byte ReadOddByte(string prompt = null, int maxNumber = 255)
         {
             byte value = 0; //In this method we check if the input number is a odd number and less than 79. If its not, there vill be a catch
             string input;
             while (true)
             {
-                Console.Write("Skriv in ett udda tal som är mindre än 79: ");
+                Console.Write(prompt);
                 input = Console.ReadLine();
                 try
                 {
                     value = byte.Parse(input);
-                    if (value % 2 != 0 && value <= 79) //If value a odd number and less than 79, then break!
+                    if (value % 2 != 0 && value <= maxNumber) //If value a odd number and less than 79, then break!
                     {
                         break;
                     }
@@ -45,7 +48,7 @@ namespace Ritamedasterisker
                 catch //if the for doesnt work, then the catch will come up
                 {
                     Console.BackgroundColor = ConsoleColor.Red;
-                    Console.WriteLine("Ditt tal '{0}' fungerar inte. Vänligen skriv ett udda tal som är mindre än 79.", input);
+                    Console.WriteLine(ConsoleApplication1.Properties.Resources.Error, input);
                     Console.ResetColor();
                 }
 
@@ -57,21 +60,39 @@ namespace Ritamedasterisker
 
         static void RenderTriangle(byte cols) 
         {
+            byte cols2 = cols;    
            for (int row = 1; row <= cols; row += 2) // 
             {
-                for (int withespaces = 0; withespaces < cols-row; withespaces += 2)  // 5(cols)-3(row)=2(withespace)
-                {
-                    Console.Write(" ");
-                }
-
-                for (int aster = 0; aster < row; aster++)
-                {
-                    Console.Write("*");
-                }
+                RenderRow(row, cols);
 
                 Console.WriteLine();
+
+
             }
 
+           for (int row = cols2-1; row > 0; row-= 2) // 
+           {
+              
+               RenderRow(row-1, cols2);
+               Console.WriteLine();
+
+
+           }
+
         }
+
+            static void RenderRow(int row, int cols)
+            {
+               for (int withespaces =0; withespaces < cols-row; withespaces += 2)  // 5(cols)-3(row)=2(withespace)
+               {
+                   Console.Write(" ");
+               }
+
+               for (int aster = 0; aster < row; aster++)
+               {
+                   Console.Write("*");
+               }
+
+            }
     }
 }
