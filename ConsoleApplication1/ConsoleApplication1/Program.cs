@@ -11,6 +11,7 @@ namespace Ritamedasterisker
         static void Main(string[] args)
         {
             byte oddNumber; //triangel http://sharepoint2010mind.blogspot.se/2012/10/c-program-to-print-patterns-of-numbers.html
+            int maxNumber = 79;
 
             do
             {
@@ -26,7 +27,7 @@ namespace Ritamedasterisker
         }
         static byte ReadOddByte()
         {
-            byte value = 0; //In this methos we check if the input number is a odd number and less than 79. If its not, there vill be a catch
+            byte value = 0; //In this method we check if the input number is a odd number and less than 79. If its not, there vill be a catch
             string input;
             while (true)
             {
@@ -35,7 +36,7 @@ namespace Ritamedasterisker
                 try
                 {
                     value = byte.Parse(input);
-                    if (value % 2 != 0 && value <= 79) //If value a odd number and less than 79, then break!               ??? hur value <=79?????
+                    if (value % 2 != 0 && value <= 79) //If value a odd number and less than 79, then break!
                     {
                         break;
                     }
@@ -47,31 +48,43 @@ namespace Ritamedasterisker
                     Console.WriteLine("Ditt tal '{0}' fungerar inte. Vänligen skriv ett udda tal som är mindre än 79.", input);
                     Console.ResetColor();
                 }
-                
+
 
             }
             return value;
-            
+
         }
 
-        static void RenderTriangle(byte cols)
+        static void RenderTriangle(byte cols) //
         {
-            
-            int height, c, width, temp; //use 4 variables to execute a mathematical equation
-            width = cols/2; //Delar cols med två för att värdet 79 var för stort för consolen
-            temp = width;
-            for (height = 1; height <= width; height++)             //triangel http://sharepoint2010mind.blogspot.se/2012/10/c-program-to-print-patterns-of-numbers.html
-
+           for (int row = 1; row <= cols; row += 2)
             {
-                for (c = 1; c < temp; c++)
+                for (int withespaces = 0; withespaces < cols-row; withespaces += 2)
+                {
                     Console.Write(" ");
+                }
 
-                temp--;
-                for (c = 1; c <= 2 * height - 1; c++)
+                for (int aster = 0; aster < row; aster++)
+                {
                     Console.Write("*");
+                }
 
                 Console.WriteLine();
-           }
+            }
+
+                //for (height = 1; height <= width; height++)             //triangel http://sharepoint2010mind.blogspot.se/2012/10/c-program-to-print-patterns-of-numbers.html
+                //{
+                //    for (c = 1; c < temp; c++)
+                //        Console.Write(" ");
+
+                //    temp--;
+                //    for (c = 1; c <= 2 * height - 1; c++)
+                //        Console.Write("*");
+
+                //    Console.WriteLine();
+
+                //}
+
         }
     }
 }
