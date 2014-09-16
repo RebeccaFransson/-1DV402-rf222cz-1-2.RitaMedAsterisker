@@ -55,11 +55,11 @@ namespace Ritamedasterisker
 
         }
 
-        static void RenderTriangle(byte cols) //
+        static void RenderTriangle(byte cols) 
         {
-           for (int row = 1; row <= cols; row += 2)
+           for (int row = 1; row <= cols; row += 2) // 
             {
-                for (int withespaces = 0; withespaces < cols-row; withespaces += 2)
+                for (int withespaces = 0; withespaces < cols-row; withespaces += 2)  // 5(cols)-3(row)=2(withespace)
                 {
                     Console.Write(" ");
                 }
@@ -71,19 +71,6 @@ namespace Ritamedasterisker
 
                 Console.WriteLine();
             }
-
-                //for (height = 1; height <= width; height++)             //triangel http://sharepoint2010mind.blogspot.se/2012/10/c-program-to-print-patterns-of-numbers.html
-                //{
-                //    for (c = 1; c < temp; c++)
-                //        Console.Write(" ");
-
-                //    temp--;
-                //    for (c = 1; c <= 2 * height - 1; c++)
-                //        Console.Write("*");
-
-                //    Console.WriteLine();
-
-                //}
 
         }
     }
